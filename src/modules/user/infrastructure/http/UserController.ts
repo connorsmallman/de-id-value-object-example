@@ -2,7 +2,12 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { UserDTO } from '../../dtos/UserDTO';
 import { CreateUserUseCase } from '../../usecases/CreateUserUseCase';
 
-type UserResponseDTO = {};
+type UserResponseDTO = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};
 
 @Controller()
 export class UserController {
@@ -12,6 +17,11 @@ export class UserController {
   async createUser(@Body() userDTO: UserDTO): Promise<UserResponseDTO> {
     const user = await this.createUserUseCase.execute(userDTO);
 
-    return {};
+    return {
+      id: user.id,
+      email: user.email.value,
+      name: user.name.value,
+      password: user.password,
+    };
   }
 }

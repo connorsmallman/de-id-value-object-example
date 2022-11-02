@@ -10,7 +10,7 @@ type UserProps = {
 };
 
 export class User {
-  private id: any;
+  public id: any;
   private props: UserProps;
 
   constructor(props: UserProps, id?: string) {
