@@ -9,7 +9,7 @@ export class AfterUserCreatedSubscription {
 
   @OnEvent(UserCreatedEvent.name, { async: true })
   async handleUserCreatedEvent(event: UserCreatedEvent) {
-    await this.identificationService.deIdentify(event.user.name);
-    await this.identificationService.deIdentify(event.user.email);
+    await this.identificationService.store(event.user.name);
+    await this.identificationService.store(event.user.email);
   }
 }
